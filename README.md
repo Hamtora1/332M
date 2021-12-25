@@ -1,73 +1,140 @@
-<table>
-  <tr>
-    <td>
-      <a href="https://www.bootstrapdash.com/demo/corona-free/jquery/template/index.html" target="_blank"><img src="preview.jpg"></a>
-       <h3>Corona-free</h3>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img width="250" src="/yargs-logo.png">
+</p>
+<h1 align="center"> Yargs </h1>
+<p align="center">
+  <b >Yargs be a node.js library fer hearties tryin' ter parse optstrings</b>
+</p>
 
-<h1>CoronaAdmin-Free-Admin-Template</h1>
-Corona Admin is a free responsive admin template built with Bootstrap 4. The template has colorful, attractive yet simple and elegant design. The template is well crafted, with all the components neatly and carefully designed and arranged within the template.
-
-Corona Admin is packed with all the features that fit your needs but not cramped with components you would not even use. It is an excellent fit to build admin panels, e-commerce systems, project management systems, CMS or CRM.
-
-Although the template has a design like none other, it is easily customizable to suit your requirements. Corona Admin comes with a clean and well-commented code that makes it easy to work with the template. Thus making it an ideal pick for jump starting your project.
-
-<h1>Credits:</h1>
-
-- Bootstrap 4
-- Material Design Icons
-- jQuery
-- Gulp
-- Chart.js
-
-<h1>Browser Support:</h1>
-
-Corona Admin is designed to work flawlessly with all the latest and modern web browsers.
-
-- Chrome (latest)
-- FireFox (latest)
-- Safari (latest)
-- Opera (latest)
-- IE10+
-
-<h1>License Information:</h1>
-
-Corona Admin is released under MIT license. Corona Admin is a free Bootstrap 4 admin template developed from BootstrapDash. Feel free to download it, use it, share it, get creative with it.
-
-<h1>How to use Corona Admin?</h1>
-
-1 - Click the Clone or Download button in GitHub and download as a ZIP file or you can enter the command git clone https://github.com/BootstrapDash/corona-free-dark-bootstrap-admin-template.git in you terminal to get a copy of this template.
-
-2 - After the files have been downloaded you will get a folder with all the required files
-
-3 - You can install all the dependencies in the template by running the command npm install. All the required files are in the node modules.
-
-4 - Find the file named index.html, check what all components you need. Open the file in a text editor and you can start editing.
-
-5 - Now that your project has now kick-started, all you need to do now is to code, code, and code to your heart's content.
-
-<h1>How to Contribute?:</h1>
-
-We love your contributions and we welcome them wholeheartedly. We believe the more the merrier.
-To contribute make sure you have a Node.js and npm installed. Now run the command gulp --version. If the command returns with the Gulp version number, it means you have Gulp installed. If not you need to run the command npm install --global gulp-cli to install Gulp.
-
-<h2>Next</h2>
-
-After Gulp has been installed, follow the steps below to contribute.
 <br>
-1 - Fork and clone the repo of Corona Admin.
-<br>
-2 - Run the command npm install to install all the dependencies.
-<br>
-3 - Enter the command gulp serve. This will open Corona Admin in your default browser.
-<br>
-4 - Make your valuable contribution
-<br>
-5 - Submit a pull request.
 
-  <hr>
-	Do you need a template with more features and functionalities? Get more with our collection of the premium template with more plugins, eye catching animations, UI components, and sample pages all fitting together with a high-quality design.
-Visit
-  <a href="https://www.bootstrapdash.com" target="_blank">https://www.bootstrapdash.com</a> for more admin templates.
+[![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![js-standard-style][standard-image]][standard-url]
+[![Coverage][coverage-image]][coverage-url]
+[![Conventional Commits][conventional-commits-image]][conventional-commits-url]
+[![Slack][slack-image]][slack-url]
+
+## Description :
+Yargs helps you build interactive command line tools, by parsing arguments and generating an elegant user interface.
+
+It gives you:
+
+* commands and (grouped) options (`my-program.js serve --port=5000`).
+* a dynamically generated help menu based on your arguments.
+
+> <img width="400" src="/screen.png">
+
+* bash-completion shortcuts for commands and options.
+* and [tons more](/docs/api.md).
+
+## Installation
+
+Stable version:
+```bash
+npm i yargs
+```
+
+Bleeding edge version with the most recent features:
+```bash
+npm i yargs@next
+```
+
+## Usage :
+
+### Simple Example
+
+```javascript
+#!/usr/bin/env node
+const {argv} = require('yargs')
+
+if (argv.ships > 3 && argv.distance < 53.5) {
+  console.log('Plunder more riffiwobbles!')
+} else {
+  console.log('Retreat from the xupptumblers!')
+}
+```
+
+```bash
+$ ./plunder.js --ships=4 --distance=22
+Plunder more riffiwobbles!
+
+$ ./plunder.js --ships 12 --distance 98.7
+Retreat from the xupptumblers!
+```
+
+### Complex Example
+
+```javascript
+#!/usr/bin/env node
+require('yargs') // eslint-disable-line
+  .command('serve [port]', 'start the server', (yargs) => {
+    yargs
+      .positional('port', {
+        describe: 'port to bind on',
+        default: 5000
+      })
+  }, (argv) => {
+    if (argv.verbose) console.info(`start server on :${argv.port}`)
+    serve(argv.port)
+  })
+  .option('verbose', {
+    alias: 'v',
+    type: 'boolean',
+    description: 'Run with verbose logging'
+  })
+  .argv
+```
+
+Run the example above with `--help` to see the help for the application.
+
+## TypeScript
+
+yargs has type definitions at [@types/yargs][type-definitions].
+
+```
+npm i @types/yargs --save-dev
+```
+
+See usage examples in [docs](/docs/typescript.md).
+
+## Webpack
+
+See usage examples of yargs with webpack in [docs](/docs/webpack.md).
+
+## Community :
+
+Having problems? want to contribute? join our [community slack](http://devtoolscommunity.herokuapp.com).
+
+## Documentation :
+
+### Table of Contents
+
+* [Yargs' API](/docs/api.md)
+* [Examples](/docs/examples.md)
+* [Parsing Tricks](/docs/tricks.md)
+  * [Stop the Parser](/docs/tricks.md#stop)
+  * [Negating Boolean Arguments](/docs/tricks.md#negate)
+  * [Numbers](/docs/tricks.md#numbers)
+  * [Arrays](/docs/tricks.md#arrays)
+  * [Objects](/docs/tricks.md#objects)
+  * [Quotes](/docs/tricks.md#quotes)
+* [Advanced Topics](/docs/advanced.md)
+  * [Composing Your App Using Commands](/docs/advanced.md#commands)
+  * [Building Configurable CLI Apps](/docs/advanced.md#configuration)
+  * [Customizing Yargs' Parser](/docs/advanced.md#customizing)
+* [Contributing](/contributing.md)
+
+[travis-url]: https://travis-ci.org/yargs/yargs
+[travis-image]: https://img.shields.io/travis/yargs/yargs/master.svg
+[npm-url]: https://www.npmjs.com/package/yargs
+[npm-image]: https://img.shields.io/npm/v/yargs.svg
+[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+[standard-url]: http://standardjs.com/
+[conventional-commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
+[conventional-commits-url]: https://conventionalcommits.org/
+[slack-image]: http://devtoolscommunity.herokuapp.com/badge.svg
+[slack-url]: http://devtoolscommunity.herokuapp.com
+[type-definitions]: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yargs
+[coverage-image]: https://img.shields.io/nycrc/yargs/yargs
+[coverage-url]: https://github.com/yargs/yargs/blob/master/.nycrc
